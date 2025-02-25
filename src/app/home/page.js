@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Pixelify_Sans } from "next/font/google";
@@ -5,8 +8,14 @@ import { Pixelify_Sans } from "next/font/google";
 const pixelifySans = Pixelify_Sans({ subsets: ["latin"] });
 
 export default function Home() {
+	const [email, setEmail] = useState("");
+
+	const handleEmailChange = (e) => {
+		setEmail(e.target.value);
+	};
+
 	return (
-		<div className={pixelifySans.className}>
+		<div className={pixelifySans.container}>
 			<link
 				rel="icon"
 				href="/favicon.ico"
@@ -56,6 +65,33 @@ export default function Home() {
 					</a>
 				</div>
 			</nav>
+			<div className={styles.mainText}>
+				Craft your own AI Chatbot effortlessly!
+			</div>
+			<div className={styles.subText}>
+				Unleash the power of artificial intelligence without coding! Build,
+				customize, and deploy your unique chatbot with our intuitive platform.
+			</div>
+			<div className="emailContainer">
+				<Image
+					src="/mailicon.png"
+					alt="Email icon"
+					width={24}
+					height={24}
+					className={styles.emailIcon}></Image>
+				<input
+					type="email"
+					placeholder="Enter your e-mail..."
+					value={email}
+					onChange={handleEmailChange}
+					className={styles.emailInput}
+				/>
+				<input
+					type="submit"
+					value="Get Started"
+					className={styles.emailButton}
+				/>
+			</div>
 		</div>
 	);
 }
