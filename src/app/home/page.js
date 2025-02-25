@@ -92,6 +92,15 @@ export default function Home() {
 					className={styles.emailButton}
 				/>
 			</div>
+			<div className="homepageImageContainer">
+				<Image
+					src="/homepageimage.svg"
+					alt="Homepage image"
+					width={485}
+					height={492}
+					className={styles.homepageImage}
+				/>
+			</div>
 		</div>
 	);
 }
