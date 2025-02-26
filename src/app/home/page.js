@@ -1,12 +1,45 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Image } from "antd";
+import { Input, Image, Button, ConfigProvider, Space } from "antd";
 import { Typography } from "antd";
+import { AntDesignOutlined } from "@ant-design/icons";
+import { createStyles } from "antd-style";
+
 const { TextArea } = Input;
-const { Title, Text, Link } = Typography;
+const { Title, Text } = Typography;
+
+const useStyle = createStyles(({ prefixCls, css }) => ({
+	linearGradientButton: css`
+		&.${prefixCls}-btn-primary:not([disabled]):not(
+				.${prefixCls}-btn-dangerous
+			) {
+			> span {
+				position: relative;
+			}
+			&::before {
+				content: "";
+				background: linear-gradient(135deg, rgb(0, 0, 0), rgb(117, 117, 117));
+				position: absolute;
+				inset: -1px;
+				opacity: 1;
+				transition: all 0.3s;
+				border-radius: inherit;
+			}
+			&:hover::before {
+				background: linear-gradient(135deg, rgb(117, 117, 117), rgb(0, 0, 0));
+				opacity: 1;
+			}
+			&:active::before {
+				background: linear-gradient(135deg, rgb(0, 0, 0), rgb(255, 255, 255));
+				opacity: 1;
+			}
+		}
+	`,
+}));
 
 const App = () => {
+	const { styles } = useStyle();
 	const [value, setValue] = useState("");
 	return (
 		<div
@@ -25,7 +58,7 @@ const App = () => {
 				transform: "translate(-50%, -50%)",
 			}}>
 			<div
-				style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+				style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
 				<Image
 					src="/logo.png"
 					alt="Logo"
@@ -38,7 +71,7 @@ const App = () => {
 				/>
 				<Title level={2}>Hi, I'm Chatterbox.</Title>
 			</div>
-			<div style={{ marginBottom: "20px" }}>
+			<div style={{ marginBottom: "15px" }}>
 				<Text>How can I help you today?</Text>
 			</div>
 			<TextArea
@@ -55,6 +88,21 @@ const App = () => {
 					maxRows: 5,
 				}}
 			/>
+			<div style={{ marginTop: "20px" }}>
+				<ConfigProvider
+					button={{
+						className: styles.linearGradientButton,
+					}}>
+					<Space>
+						<Button
+							type="primary"
+							size="large"
+							icon={<AntDesignOutlined />}>
+							Search
+						</Button>
+					</Space>
+				</ConfigProvider>
+			</div>
 		</div>
 	);
 };
