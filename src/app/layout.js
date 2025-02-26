@@ -1,3 +1,6 @@
+import "@ant-design/v5-patch-for-react-19";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+
 export const metadata = {
 	title: "Chatterino",
 	description: "Chatterino: AI Chatbots all in one place.",
@@ -12,7 +15,9 @@ export default function RootLayout({ children }) {
 					href="/favicon.ico"
 				/>
 			</head>
-			<body style={{ margin: 0, padding: 0 }}>{children}</body>
+			<body style={{ margin: 0, padding: 0 }}>
+				<AntdRegistry>{children}</AntdRegistry>
+			</body>
 		</html>
 	);
 }
