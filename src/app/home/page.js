@@ -36,7 +36,7 @@ const App = () => {
 						borderRadius: "10px",
 					}}
 				/>
-				<Title level={2}>Hi, I\'m Chatterbox.</Title>
+				<Title level={2}>Hi, I'm Chatterbox.</Title>
 			</div>
 			<div style={{ marginBottom: "20px" }}>
 				<Text>How can I help you today?</Text>
