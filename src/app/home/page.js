@@ -25,7 +25,7 @@ const App = () => {
 					top: 0,
 					bottom: 0,
 					width: "250px",
-					backgroundColor: "#333",
+					backgroundColor: "#000",
 					color: "#fff",
 					transition: "left 0.3s",
 					padding: "20px",
@@ -48,7 +48,7 @@ const App = () => {
 					left: "20px",
 					fontSize: "24px",
 					cursor: "pointer",
-					color: sidebarVisible ? "#fff" : "#333",
+					color: sidebarVisible ? "#fff" : "#000",
 				}}
 			/>
 			<div
