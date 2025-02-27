@@ -92,6 +92,7 @@ const Home = () => {
 				</div>
 				<div style={{ position: "relative", width: "100%" }}>
 					<TextArea
+						allowClear={true}
 						style={{
 							borderRadius: "30px",
 							padding: "14px",
@@ -114,22 +115,21 @@ const Home = () => {
 							position: "absolute",
 							right: "10px",
 							bottom: "10px",
+							zIndex: 1,
 						}}>
-						<Tooltip title="search">
-							<Button
-								variant="solid"
-								shape="circle"
-								icon={<SearchOutlined style={{ color: "#fff" }} />}
-								style={{
-									backgroundColor: "#000",
-									border: "none",
-									defaultActiveBorderColor: "000",
-									defaultGhostBorderColor: "000",
-									primaryShadow: "000",
-								}}
-								onClick={() => console.log("Send button clicked")}
-							/>
-						</Tooltip>
+						<Button
+							variant="solid"
+							shape="circle"
+							icon={<SearchOutlined style={{ color: "#fff" }} />}
+							style={{
+								backgroundColor: "#000",
+								border: "none",
+								defaultActiveBorderColor: "000",
+								defaultGhostBorderColor: "000",
+								primaryShadow: "000",
+							}}
+							onClick={() => console.log("Send button clicked")}
+						/>
 					</div>
 				</div>
 			</div>
