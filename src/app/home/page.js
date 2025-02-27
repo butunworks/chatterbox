@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Typography } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { Input, Typography, Button, Tooltip } from "antd";
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
 const { TextArea } = Input;
@@ -30,14 +30,17 @@ const Home = () => {
 					transition: "left 0.3s",
 					padding: "20px",
 					boxSizing: "border-box",
+					borderTopRightRadius: "30px",
+					borderBottomRightRadius: "30px",
+					boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
 				}}>
-				<div style={{ marginTop: "20px" }}>
+				<div style={{ marginTop: "30px" }}>
 					<Title
 						level={3}
 						style={{ color: "#fff" }}>
-						Sidebar
+						Chats
 					</Title>
-					<Text style={{ color: "#fff" }}>This is a sliding sidebar.</Text>
+					<Text style={{ color: "#fff" }}></Text>
 				</div>
 			</div>
 			<MenuOutlined
@@ -87,21 +90,47 @@ const Home = () => {
 				<div style={{ marginBottom: "15px" }}>
 					<Text>How can I help you today?</Text>
 				</div>
-				<TextArea
-					style={{ borderRadius: "25px", padding: "14px" }}
-					value={value}
-					onChange={(e) => {
-						setValue(e.target.value);
-						console.log("TextArea value:", e.target.value);
-					}}
-					placeholder="Talk to Chatterbox..."
-					maxLength={500}
-					showCount={false}
-					autoSize={{
-						minRows: 3,
-						maxRows: 5,
-					}}
-				/>
+				<div style={{ position: "relative", width: "100%" }}>
+					<TextArea
+						allowClear={true}
+						style={{ borderRadius: "30px", padding: "14px" }}
+						value={value}
+						onChange={(e) => {
+							setValue(e.target.value);
+							console.log("TextArea value:", e.target.value);
+						}}
+						placeholder="Talk to Chatterbox..."
+						maxLength={500}
+						showCount={false}
+						autoSize={{
+							minRows: 3,
+							maxRows: 5,
+						}}
+					/>
+					<div
+						style={{
+							position: "absolute",
+							right: "10px",
+							bottom: "10px",
+						}}>
+						<Tooltip title="search">
+							<Button
+								color="black"
+								variant="solid"
+								shape="circle"
+								icon={<SearchOutlined style={{ color: "#fff" }} />}
+								style={{
+									backgroundColor: "#000",
+									border: "none",
+									defaultActiveBorderColor: "000",
+									defaultGhostBorderColor: "000",
+									primaryShadow: "000",
+								}}
+								onClick={() => console.log("Send button clicked")}
+							/>
+						</Tooltip>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
