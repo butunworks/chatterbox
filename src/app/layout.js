@@ -1,5 +1,6 @@
 import "@ant-design/v5-patch-for-react-19";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider, theme } from "antd";
 
 export const metadata = {
 	title: "Chatterbox",
@@ -16,7 +17,21 @@ export default function RootLayout({ children }) {
 				/>
 			</head>
 			<body style={{ margin: 0, padding: 0 }}>
-				<AntdRegistry>{children}</AntdRegistry>
+				<AntdRegistry>
+					<ConfigProvider
+						theme={{
+							token: {
+								// Seed Token
+								colorPrimary: "#000",
+								borderRadius: 1,
+
+								// Alias Token
+								colorBgContainer: "#ffffff",
+							},
+						}}>
+						{children}
+					</ConfigProvider>
+				</AntdRegistry>
 			</body>
 		</html>
 	);

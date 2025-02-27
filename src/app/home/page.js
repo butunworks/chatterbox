@@ -92,7 +92,10 @@ const Home = () => {
 				</div>
 				<div style={{ position: "relative", width: "100%" }}>
 					<TextArea
-						style={{ borderRadius: "30px", padding: "14px" }}
+						style={{
+							borderRadius: "30px",
+							padding: "14px",
+						}}
 						value={value}
 						onChange={(e) => {
 							setValue(e.target.value);
@@ -114,7 +117,6 @@ const Home = () => {
 						}}>
 						<Tooltip title="search">
 							<Button
-								color="black"
 								variant="solid"
 								shape="circle"
 								icon={<SearchOutlined style={{ color: "#fff" }} />}
