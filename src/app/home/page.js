@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Image } from "antd";
-import { Typography } from "antd";
+import { Input, Typography } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
+import Image from "next/image";
 
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
-const App = () => {
+const Home = () => {
 	const [value, setValue] = useState("");
 	const [sidebarVisible, setSidebarVisible] = useState(false);
 
@@ -75,9 +75,9 @@ const App = () => {
 					<Image
 						src="/logo.png"
 						alt="Logo"
+						width={35}
+						height={35}
 						style={{
-							width: "35px",
-							height: "35px",
 							marginRight: "10px",
 							borderRadius: "10px",
 						}}
@@ -107,4 +107,4 @@ const App = () => {
 	);
 };
 
-export default App;
+export default Home;
