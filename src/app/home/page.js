@@ -92,7 +92,6 @@ const Home = () => {
 				</div>
 				<div style={{ position: "relative", width: "100%" }}>
 					<TextArea
-						allowClear={true}
 						style={{ borderRadius: "30px", padding: "14px" }}
 						value={value}
 						onChange={(e) => {
