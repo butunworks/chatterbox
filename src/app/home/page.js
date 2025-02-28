@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Input, Typography, Button, Tooltip } from "antd";
-import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+import { DoubleRightOutlined, SearchOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
 const { TextArea } = Input;
@@ -34,7 +34,7 @@ const Home = () => {
 					borderBottomRightRadius: "30px",
 					boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
 				}}>
-				<div style={{ marginTop: "30px" }}>
+				<div style={{ marginTop: "50px", marginLeft: "4px" }}>
 					<Title
 						level={3}
 						style={{ color: "#fff" }}>
@@ -43,7 +43,7 @@ const Home = () => {
 					<Text style={{ color: "#fff" }}></Text>
 				</div>
 			</div>
-			<MenuOutlined
+			<DoubleRightOutlined
 				onClick={toggleSidebar}
 				style={{
 					position: "fixed",
@@ -52,6 +52,8 @@ const Home = () => {
 					fontSize: "24px",
 					cursor: "pointer",
 					color: sidebarVisible ? "#fff" : "#000",
+					transform: sidebarVisible ? "rotate(180deg)" : "rotate(0deg)",
+					transition: "transform 0.3s",
 				}}
 			/>
 			<div
