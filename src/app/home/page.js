@@ -87,9 +87,13 @@ const Home = () => {
 							borderRadius: "10px",
 						}}
 					/>
-					<Title level={2}>Hi, I'm Chatterbox.</Title>
+					<Title
+						level={2}
+						style={{ marginBottom: "0" }}>
+						Hi, I'm Chatterbox.
+					</Title>
 				</div>
-				<div style={{ marginBottom: "15px" }}>
+				<div style={{ marginBottom: "25px" }}>
 					<Text>How can I help you today?</Text>
 				</div>
 				<div style={{ position: "relative", width: "100%" }}>
