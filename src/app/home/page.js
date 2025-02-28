@@ -3,6 +3,7 @@
 // Import React and required hooks/components from antd and other libraries
 import React, { useState } from "react";
 import { Input, Typography, Button, Tooltip, ConfigProvider, Flex } from "antd";
+import "../globals.css";
 import {
 	DoubleRightOutlined,
 	SearchOutlined,
@@ -39,14 +40,29 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 			}
 		}
 	`,
-	// Style for the animated button used for Chat History elements
+	// Updated animated button style
 	animatedButton: css`
 		transition: transform 0.2s ease;
+		transform-origin: center;
 		&:hover {
 			transform: scale(1.02);
 		}
 		&:active {
 			transform: scale(0.98);
+		}
+	`,
+	scrollableChatHistory: css`
+		max-height: 370px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		animation: fadeIn 0.5s ease-in;
+		scrollbar-width: thin;
+		&::-webkit-scrollbar {
+			width: 6px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #888;
+			border-radius: 3px;
 		}
 	`,
 }));
@@ -83,6 +99,7 @@ const Home = () => {
 					borderTopRightRadius: "30px",
 					borderBottomRightRadius: "30px",
 					boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
+					marginLeft: "0",
 				}}>
 				<div style={{ marginTop: "50px", marginLeft: "4px" }}>
 					{/* Sidebar header: Logo and App Title */}
@@ -124,28 +141,38 @@ const Home = () => {
 						Chats
 					</Title>
 					<Text style={{ color: "#fff" }}></Text>
-					{/* Chat History buttons using ConfigProvider and mapping over margin values */}
-					<ConfigProvider>
-						{["20px", "10px", "10px"].map((marginTop, index) => (
-							<Button
-								key={index}
-								type="primary"
-								className={styles.animatedButton}
-								style={{
-									marginTop: marginTop,
-									width: "100%",
-									height: "50px",
-									backgroundColor: "#fff",
-									color: "#fff",
-									backgroundColor: "#808080",
-									border: "none",
-									borderRadius: "50px",
-									marginBottom: "10px",
-								}}>
-								Chat History
-							</Button>
-						))}
-					</ConfigProvider>
+					{/* Chat History section */}
+					<div
+						className={styles.scrollableChatHistory}
+						style={{ marginTop: "20px" }}>
+						<ConfigProvider>
+							{["10px", "10px", "10px", "10px", "10px", "10px", "10px"].map(
+								(marginTop, index) => (
+									<Button
+										key={index}
+										type="primary"
+										className={styles.animatedButton}
+										style={{
+											marginTop: marginTop,
+											width: "calc(100% - 20px)",
+											height: "50px",
+											backgroundColor: "#808080",
+											color: "#fff",
+											border: "none",
+											borderRadius: "50px",
+											marginBottom: "10px",
+											display: "flex",
+											justifyContent: "center",
+											alignItems: "center",
+											marginLeft: "auto",
+											marginRight: "auto",
+										}}>
+										Chat History {index + 1}
+									</Button>
+								)
+							)}
+						</ConfigProvider>
+					</div>
 				</div>
 
 				<div
