@@ -1,5 +1,6 @@
 "use client";
 
+// Import React and required hooks/components from antd and other libraries
 import React, { useState } from "react";
 import { Input, Typography, Button, Tooltip, ConfigProvider, Flex } from "antd";
 import {
@@ -13,7 +14,9 @@ import { createStyles } from "antd-style";
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
+// Create custom styles using createStyles from antd-style
 const useStyle = createStyles(({ prefixCls, css }) => ({
+	// Style for the gradient button used for New Chat
 	linearGradientButton: css`
 		&.${prefixCls}-btn-primary:not([disabled]):not(
 				.${prefixCls}-btn-dangerous
@@ -21,7 +24,6 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 			> span {
 				position: relative;
 			}
-
 			&::before {
 				content: "";
 				background: linear-gradient(135deg, rgb(65, 65, 65), #808080, #ffffff);
@@ -31,12 +33,12 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 				transition: all 0.3s;
 				border-radius: 50px;
 			}
-
 			&:hover::before {
 				opacity: 0.5;
 			}
 		}
 	`,
+	// Style for the animated button used for Chat History elements
 	animatedButton: css`
 		transition: transform 0.2s ease;
 		&:hover {
@@ -48,17 +50,23 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 	`,
 }));
 
+// Main component: Home page
 const Home = () => {
+	// State for the text area value
 	const [value, setValue] = useState("");
+	// State determining if the sidebar is visible
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	// Extract the styles from our custom useStyle hook
 	const { styles } = useStyle();
 
+	// Function to toggle the sidebar visibility
 	const toggleSidebar = () => {
 		setSidebarVisible(!sidebarVisible);
 	};
 
 	return (
 		<div style={{ display: "flex", height: "100vh", width: "100vw" }}>
+			{/* Sidebar section */}
 			<div
 				style={{
 					position: "fixed",
@@ -76,6 +84,7 @@ const Home = () => {
 					boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
 				}}>
 				<div style={{ marginTop: "50px", marginLeft: "4px" }}>
+					{/* Sidebar header: Logo and App Title */}
 					<div
 						style={{
 							display: "flex",
@@ -99,6 +108,7 @@ const Home = () => {
 							Chatterbox
 						</Title>
 					</div>
+					{/* New Chat button */}
 					<Button
 						type="primary"
 						className={styles.linearGradientButton}
@@ -106,12 +116,14 @@ const Home = () => {
 						style={{ marginTop: "10px", width: "100%" }}>
 						New Chat
 					</Button>
+					{/* Section title for Chats */}
 					<Title
 						level={3}
 						style={{ color: "#fff", marginTop: "20px" }}>
 						Chats
 					</Title>
 					<Text style={{ color: "#fff" }}></Text>
+					{/* Chat History buttons using ConfigProvider and mapping over margin values */}
 					<ConfigProvider>
 						{["20px", "10px", "10px"].map((marginTop, index) => (
 							<Button
@@ -132,6 +144,8 @@ const Home = () => {
 					</ConfigProvider>
 				</div>
 			</div>
+
+			{/* Sidebar toggle button */}
 			<DoubleRightOutlined
 				onClick={toggleSidebar}
 				style={{
@@ -145,6 +159,8 @@ const Home = () => {
 					transition: "transform 0.3s",
 				}}
 			/>
+
+			{/* Main chat section */}
 			<div
 				style={{
 					display: "flex",
@@ -160,6 +176,7 @@ const Home = () => {
 					right: "50%",
 					transform: "translate(-50%, -50%)",
 				}}>
+				{/* Header section with logo and greeting */}
 				<div
 					style={{
 						display: "flex",
@@ -182,9 +199,11 @@ const Home = () => {
 						Hi, I'm Chatterbox.
 					</Title>
 				</div>
+				{/* Helper text */}
 				<div style={{ marginBottom: "25px" }}>
 					<Text>How can I help you today?</Text>
 				</div>
+				{/* Text input area with send button */}
 				<div style={{ position: "relative", width: "100%" }}>
 					<TextArea
 						allowClear={true}
@@ -205,6 +224,7 @@ const Home = () => {
 							maxRows: 5,
 						}}
 					/>
+					{/* Send button positioned over the TextArea */}
 					<div
 						style={{
 							position: "absolute",
