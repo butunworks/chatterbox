@@ -1,16 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Typography, Button, Tooltip } from "antd";
+import { Input, Typography, Button, Tooltip, ConfigProvider } from "antd";
 import { DoubleRightOutlined, SearchOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import { createStyles } from "antd-style";
 
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
+const useStyle = createStyles(({ prefixCls, css }) => ({
+	linearGradientButton: css`
+		&.${prefixCls}-btn-primary:not([disabled]):not(
+				.${prefixCls}-btn-dangerous
+			) {
+			> span {
+				position: relative;
+			}
+
+			&::before {
+				content: "";
+				background: linear-gradient(135deg, rgb(65, 65, 65), #808080, #ffffff);
+				position: absolute;
+				inset: -1px;
+				opacity: 1;
+				transition: all 0.3s;
+				border-radius: 50px;
+			}
+
+			&:hover::before {
+				opacity: 0;
+			}
+		}
+	`,
+}));
+
 const Home = () => {
 	const [value, setValue] = useState("");
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	const { styles } = useStyle(); // <--- add this line
 
 	const toggleSidebar = () => {
 		setSidebarVisible(!sidebarVisible);
@@ -41,6 +69,26 @@ const Home = () => {
 						Chats
 					</Title>
 					<Text style={{ color: "#fff" }}></Text>
+					<ConfigProvider
+						button={{
+							className: styles.linearGradientButton,
+						}}>
+						<Button
+							type="primary"
+							style={{ marginTop: "20px", width: "100%" }}>
+							Chat History
+						</Button>
+						<Button
+							type="primary"
+							style={{ marginTop: "10px", width: "100%" }}>
+							Chat History
+						</Button>
+						<Button
+							type="primary"
+							style={{ marginTop: "10px", width: "100%" }}>
+							Chat History
+						</Button>
+					</ConfigProvider>
 				</div>
 			</div>
 			<DoubleRightOutlined
