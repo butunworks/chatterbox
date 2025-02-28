@@ -7,6 +7,7 @@ import {
 	DoubleRightOutlined,
 	SearchOutlined,
 	MessageOutlined,
+	SettingOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import { createStyles } from "antd-style";
@@ -142,6 +143,30 @@ const Home = () => {
 							</Button>
 						))}
 					</ConfigProvider>
+				</div>
+
+				<div
+					style={{
+						position: "absolute",
+						bottom: "20px",
+						left: "20px",
+						right: "20px",
+					}}>
+					<Button
+						type="primary"
+						variant="text"
+						icon={<SettingOutlined />}
+						className={styles.animatedButton}
+						style={{
+							width: "100%",
+							backgroundColor: "transparent",
+							border: "none",
+							color: "#fff",
+							display: "flex",
+							justifyItems: "center",
+						}}>
+						Settings
+					</Button>
 				</div>
 			</div>
 
