@@ -15,6 +15,7 @@ import { createStyles } from "antd-style";
 
 // Import the custom BackgroundLines component
 import { BackgroundLines } from "../../BackgroundLines.js";
+import { ColourfulText } from "../../ColourfulText";
 
 const { TextArea } = Input;
 const { Title, Text } = Typography;
@@ -85,7 +86,9 @@ const Home = () => {
 	};
 
 	return (
-		<BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
+		<BackgroundLines
+			className="flex items-center justify-center w-full flex-col px-4"
+			svgOptions={{ duration: 10 }}>
 			<div style={{ display: "flex", height: "100vh", width: "100vw" }}>
 				{/* Sidebar section */}
 				<div
@@ -255,7 +258,7 @@ const Home = () => {
 						<Title
 							level={2}
 							style={{ margin: "0" }}>
-							Hi, I'm Chatterbox.
+							Hi, I'm <ColourfulText text={"Chatterbox"} />.
 						</Title>
 					</div>
 					{/* Helper text */}
