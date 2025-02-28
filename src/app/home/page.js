@@ -134,10 +134,13 @@ const Home = () => {
 								style={{
 									marginTop: marginTop,
 									width: "100%",
+									height: "50px",
 									backgroundColor: "#fff",
-									color: "#000",
+									color: "#fff",
+									backgroundColor: "#808080",
 									border: "none",
 									borderRadius: "50px",
+									marginBottom: "10px",
 								}}>
 								Chat History
 							</Button>
