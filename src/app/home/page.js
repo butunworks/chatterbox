@@ -51,7 +51,7 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 const Home = () => {
 	const [value, setValue] = useState("");
 	const [sidebarVisible, setSidebarVisible] = useState(false);
-	const { styles } = useStyle(); // <--- add this line
+	const { styles } = useStyle();
 
 	const toggleSidebar = () => {
 		setSidebarVisible(!sidebarVisible);
@@ -113,45 +113,22 @@ const Home = () => {
 					</Title>
 					<Text style={{ color: "#fff" }}></Text>
 					<ConfigProvider>
-						<Button
-							type="primary"
-							className={styles.animatedButton}
-							style={{
-								marginTop: "20px",
-								width: "100%",
-								backgroundColor: "#fff",
-								color: "#000",
-								border: "none",
-								borderRadius: "50px",
-							}}>
-							Chat History
-						</Button>
-						<Button
-							type="primary"
-							className={styles.animatedButton}
-							style={{
-								marginTop: "10px",
-								width: "100%",
-								backgroundColor: "#fff",
-								color: "#000",
-								border: "none",
-								borderRadius: "50px",
-							}}>
-							Chat History
-						</Button>
-						<Button
-							type="primary"
-							className={styles.animatedButton}
-							style={{
-								marginTop: "10px",
-								width: "100%",
-								backgroundColor: "#fff",
-								color: "#000",
-								border: "none",
-								borderRadius: "50px",
-							}}>
-							Chat History
-						</Button>
+						{["20px", "10px", "10px"].map((marginTop, index) => (
+							<Button
+								key={index}
+								type="primary"
+								className={styles.animatedButton}
+								style={{
+									marginTop: marginTop,
+									width: "100%",
+									backgroundColor: "#fff",
+									color: "#000",
+									border: "none",
+									borderRadius: "50px",
+								}}>
+								Chat History
+							</Button>
+						))}
 					</ConfigProvider>
 				</div>
 			</div>
@@ -201,7 +178,7 @@ const Home = () => {
 					/>
 					<Title
 						level={2}
-						style={{ marginBottom: "0" }}>
+						style={{ margin: "0" }}>
 						Hi, I'm Chatterbox.
 					</Title>
 				</div>
