@@ -55,6 +55,22 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 			transform: scale(0.98);
 		}
 	`,
+	// New style for Chat History buttons
+	chatHistoryButton: css`
+		width: calc(100% - 20px);
+		height: 50px;
+		border-radius: 50px;
+		margin-bottom: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgb(54, 54, 54);
+		border: none;
+		transition: background-color 0.3s;
+		&:hover {
+			background-color: rgb(31, 31, 31);
+		}
+	`,
 	scrollableChatHistory: css`
 		max-height: 370px;
 		overflow-x: hidden;
@@ -138,7 +154,8 @@ const Home = () => {
 							type="primary"
 							className={styles.linearGradientButton}
 							icon={<MessageOutlined />}
-							style={{ marginTop: "10px", width: "100%" }}>
+							style={{ marginTop: "10px", width: "calc(100% - 20px)" }} // updated width
+						>
 							New Chat
 						</Button>
 						{/* Section title for Chats */}
@@ -153,31 +170,18 @@ const Home = () => {
 							className={styles.scrollableChatHistory}
 							style={{ marginTop: "20px" }}>
 							<ConfigProvider>
-								{["10px", "10px", "10px", "10px", "10px", "10px", "10px"].map(
-									(marginTop, index) => (
-										<Button
-											key={index}
-											type="primary"
-											className={styles.animatedButton}
-											style={{
-												marginTop: marginTop,
-												width: "calc(100% - 20px)",
-												height: "50px",
-												backgroundColor: "#808080",
-												color: "#fff",
-												border: "none",
-												borderRadius: "50px",
-												marginBottom: "10px",
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-												marginLeft: "auto",
-												marginRight: "auto",
-											}}>
-											Chat History {index + 1}
-										</Button>
-									)
-								)}
+								{[...Array(7)].map((_, index) => (
+									<Button
+										key={index}
+										type="primary"
+										className={`${styles.animatedButton} ${styles.chatHistoryButton}`}
+										style={{ marginTop: "10px" }}
+										onClick={() =>
+											console.log(`Chat History ${index + 1} clicked`)
+										}>
+										Chat History {index + 1}
+									</Button>
+								))}
 							</ConfigProvider>
 						</div>
 					</div>
