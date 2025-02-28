@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Typography, Button, Tooltip, ConfigProvider } from "antd";
-import { DoubleRightOutlined, SearchOutlined } from "@ant-design/icons";
+import { Input, Typography, Button, Tooltip, ConfigProvider, Flex } from "antd";
+import {
+	DoubleRightOutlined,
+	SearchOutlined,
+	MessageOutlined,
+} from "@ant-design/icons";
 import Image from "next/image";
 import { createStyles } from "antd-style";
 
@@ -29,8 +33,17 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 			}
 
 			&:hover::before {
-				opacity: 0;
+				opacity: 0.5;
 			}
+		}
+	`,
+	animatedButton: css`
+		transition: transform 0.2s ease;
+		&:hover {
+			transform: scale(1.02);
+		}
+		&:active {
+			transform: scale(0.98);
 		}
 	`,
 }));
@@ -52,7 +65,7 @@ const Home = () => {
 					left: sidebarVisible ? 0 : "-250px",
 					top: 0,
 					bottom: 0,
-					width: "250px",
+					width: "300px",
 					backgroundColor: "#000",
 					color: "#fff",
 					transition: "left 0.3s",
@@ -63,29 +76,80 @@ const Home = () => {
 					boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
 				}}>
 				<div style={{ marginTop: "50px", marginLeft: "4px" }}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							marginBottom: "20px",
+						}}>
+						<Image
+							src="/logo.png"
+							alt="Logo"
+							width={35}
+							height={35}
+							style={{
+								marginRight: "10px",
+								borderRadius: "10px",
+							}}
+						/>
+						<Title
+							level={2}
+							style={{ color: "#fff", margin: 0 }}>
+							Chatterbox
+						</Title>
+					</div>
+					<Button
+						type="primary"
+						className={styles.linearGradientButton}
+						icon={<MessageOutlined />}
+						style={{ marginTop: "10px", width: "100%" }}>
+						New Chat
+					</Button>
 					<Title
 						level={3}
-						style={{ color: "#fff" }}>
+						style={{ color: "#fff", marginTop: "20px" }}>
 						Chats
 					</Title>
 					<Text style={{ color: "#fff" }}></Text>
-					<ConfigProvider
-						button={{
-							className: styles.linearGradientButton,
-						}}>
+					<ConfigProvider>
 						<Button
 							type="primary"
-							style={{ marginTop: "20px", width: "100%" }}>
+							className={styles.animatedButton}
+							style={{
+								marginTop: "20px",
+								width: "100%",
+								backgroundColor: "#fff",
+								color: "#000",
+								border: "none",
+								borderRadius: "50px",
+							}}>
 							Chat History
 						</Button>
 						<Button
 							type="primary"
-							style={{ marginTop: "10px", width: "100%" }}>
+							className={styles.animatedButton}
+							style={{
+								marginTop: "10px",
+								width: "100%",
+								backgroundColor: "#fff",
+								color: "#000",
+								border: "none",
+								borderRadius: "50px",
+							}}>
 							Chat History
 						</Button>
 						<Button
 							type="primary"
-							style={{ marginTop: "10px", width: "100%" }}>
+							className={styles.animatedButton}
+							style={{
+								marginTop: "10px",
+								width: "100%",
+								backgroundColor: "#fff",
+								color: "#000",
+								border: "none",
+								borderRadius: "50px",
+							}}>
 							Chat History
 						</Button>
 					</ConfigProvider>
