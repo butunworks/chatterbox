@@ -62,7 +62,7 @@ const Home = () => {
 			<div
 				style={{
 					position: "fixed",
-					left: sidebarVisible ? 0 : "-250px",
+					left: sidebarVisible ? 0 : "-300px",
 					top: 0,
 					bottom: 0,
 					width: "300px",
