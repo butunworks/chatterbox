@@ -131,7 +131,7 @@ const Home = () => {
 			setTimeout(() => {
 				setMessages((prev) => [
 					...prev,
-					{ role: "ai", text: "Aceternity code executed" },
+					{ role: "ai", text: "This is a dummy AI text." },
 				]);
 			}, 800);
 		}
