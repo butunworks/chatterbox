@@ -252,33 +252,39 @@ const Home = () => {
 						right: "50%",
 						transform: "translate(-50%, -50%)",
 					}}>
-					{/* Header section with logo and greeting */}
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							marginBottom: "10px",
-						}}>
-						<Image
-							src="/logo.png"
-							alt="Logo"
-							width={35}
-							height={35}
-							style={{
-								marginRight: "10px",
-								borderRadius: "10px",
-							}}
-						/>
-						<Title
-							level={2}
-							style={{ margin: "0" }}>
-							Hi, I'm <ColourfulText text={"Chatterbox"} />.
-						</Title>
-					</div>
-					{/* Helper text */}
-					<div style={{ marginBottom: "25px" }}>
-						<Text>How can I help you today?</Text>
-					</div>
+					{/* Conditionally render header section and helper text */}
+					{!animateTextArea && (
+						<>
+							{/* Header section with logo and greeting */}
+							<div
+								style={{
+									display: "flex",
+									alignItems: "center",
+									marginBottom: "10px",
+								}}>
+								<Image
+									src="/logo.png"
+									alt="Logo"
+									width={35}
+									height={35}
+									style={{
+										marginRight: "10px",
+										borderRadius: "10px",
+									}}
+								/>
+								<Title
+									level={2}
+									style={{ margin: "0" }}>
+									Hi, I'm <ColourfulText text={"Chatterbox"} />.
+								</Title>
+							</div>
+							{/* Helper text */}
+							<div style={{ marginBottom: "25px" }}>
+								<Text>How can I help you today?</Text>
+							</div>
+						</>
+					)}
+
 					{/* Text input and send button container */}
 					<div
 						style={{
