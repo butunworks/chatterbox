@@ -93,12 +93,22 @@ const Home = () => {
 	const [value, setValue] = useState("");
 	// State determining if the sidebar is visible
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	// New state to control the textarea animation
+	const [animateTextArea, setAnimateTextArea] = useState(false);
 	// Extract the styles from our custom useStyle hook
 	const { styles } = useStyle();
 
 	// Function to toggle the sidebar visibility
 	const toggleSidebar = () => {
 		setSidebarVisible(!sidebarVisible);
+	};
+
+	// Handler for the send button click
+	const handleSendClick = () => {
+		if (value.trim().length >= 1) {
+			setAnimateTextArea(true);
+		}
+		console.log("Send button clicked");
 	};
 
 	return (
@@ -269,10 +279,19 @@ const Home = () => {
 					<div style={{ marginBottom: "25px" }}>
 						<Text>How can I help you today?</Text>
 					</div>
-					{/* Text input area with send button */}
-					<div style={{ position: "relative", width: "100%" }}>
+					{/* Text input and send button container */}
+					<div
+						style={{
+							/* Animate the container downward using translateY */
+							transform: animateTextArea
+								? "translateY(210px)"
+								: "translateY(0)",
+							transition: "transform 0.5s ease",
+							width: "100%",
+							marginBottom: "20px", // Give additional bottom margin if needed
+						}}>
 						<TextArea
-							allowClear={true}
+							allowClear
 							style={{
 								borderRadius: "30px",
 								padding: "14px",
@@ -309,7 +328,7 @@ const Home = () => {
 									defaultGhostBorderColor: "000",
 									primaryShadow: "000",
 								}}
-								onClick={() => console.log("Send button clicked")}
+								onClick={handleSendClick}
 							/>
 						</div>
 					</div>
