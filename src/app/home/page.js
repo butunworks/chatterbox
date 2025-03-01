@@ -1,7 +1,7 @@
 "use client";
 
 // Import React and required hooks/components from antd and other libraries
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Typography, Button, Tooltip, ConfigProvider, Flex } from "antd";
 import "../globals.css";
 import {
@@ -98,6 +98,15 @@ const Home = () => {
 	// New state for messages
 	const [messages, setMessages] = useState([]);
 	const [textAreaPosition, setTextAreaPosition] = useState(0);
+	const messagesEndRef = useRef(null);
+
+	useEffect(() => {
+		// Scrolls to bottom when messages change
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [messages]);
+
 	// Extract the styles from our custom useStyle hook
 	const { styles } = useStyle();
 
@@ -133,7 +142,7 @@ const Home = () => {
 	const messageBubbleStyle = {
 		borderRadius: "30px",
 		padding: "14px",
-		backgroundColor: "#d3d3d3",
+		backgroundColor: "rgb(227, 227, 227)",
 		maxWidth: "70%",
 		margin: "8px",
 		fontFamily: "Helvetica Neue, sans-serif",
@@ -340,6 +349,7 @@ const Home = () => {
 									{msg.text}
 								</div>
 							))}
+							<div ref={messagesEndRef} />
 						</div>
 					)}
 
