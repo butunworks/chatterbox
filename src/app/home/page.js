@@ -292,7 +292,7 @@ const Home = () => {
 							transform: animateTextArea
 								? "translateY(210px)"
 								: "translateY(0)",
-							transition: "transform 0.5s ease",
+							transition: "transform 0.8s ease",
 							width: "100%",
 							marginBottom: "20px", // Give additional bottom margin if needed
 						}}>
