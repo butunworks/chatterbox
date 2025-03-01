@@ -97,6 +97,7 @@ const Home = () => {
 	const [animateTextArea, setAnimateTextArea] = useState(false);
 	// New state for messages
 	const [messages, setMessages] = useState([]);
+	const [textAreaPosition, setTextAreaPosition] = useState(0);
 	// Extract the styles from our custom useStyle hook
 	const { styles } = useStyle();
 
@@ -114,6 +115,7 @@ const Home = () => {
 			// Aceternity code: make the input disappear from the textarea
 			setValue("");
 			// Simulate an AI answer after a delay.
+			setTextAreaPosition(120); // Adjust the value as needed
 			setTimeout(() => {
 				setMessages((prev) => [
 					...prev,
@@ -131,6 +133,7 @@ const Home = () => {
 		backgroundColor: "#d3d3d3",
 		maxWidth: "70%",
 		margin: "8px",
+		fontFamily: "Helvetica Neue, sans-serif",
 	};
 
 	return (
@@ -343,6 +346,8 @@ const Home = () => {
 							width: "100%",
 							marginBottom: "20px",
 							position: "relative",
+							transform: `translateY(${textAreaPosition}px)`,
+							transition: "transform 0.3s ease",
 						}}>
 						<TextArea
 							allowClear
