@@ -299,7 +299,7 @@ const Home = () => {
 						alignItems: "center",
 						justifyContent: "center",
 						height: "70%",
-						width: "40%",
+						width: "55%",
 						position: "absolute",
 						top: "50%",
 						bottom: "50%",
