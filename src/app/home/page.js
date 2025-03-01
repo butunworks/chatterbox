@@ -95,6 +95,8 @@ const Home = () => {
 	const [sidebarVisible, setSidebarVisible] = useState(false);
 	// New state to control the textarea animation
 	const [animateTextArea, setAnimateTextArea] = useState(false);
+	// New state for messages
+	const [messages, setMessages] = useState([]);
 	// Extract the styles from our custom useStyle hook
 	const { styles } = useStyle();
 
@@ -107,15 +109,41 @@ const Home = () => {
 	const handleSendClick = () => {
 		if (value.trim().length >= 1) {
 			setAnimateTextArea(true);
+			// Move the current textarea value to user message bubbles
+			setMessages((prev) => [...prev, { role: "user", text: value }]);
+			// Aceternity code: make the input disappear from the textarea
+			setValue("");
+			// Simulate an AI answer after a delay.
+			setTimeout(() => {
+				setMessages((prev) => [
+					...prev,
+					{ role: "ai", text: "Aceternity code executed" },
+				]);
+			}, 800);
 		}
 		console.log("Send button clicked");
+	};
+
+	// Common style for message bubbles
+	const messageBubbleStyle = {
+		borderRadius: "30px",
+		padding: "14px",
+		backgroundColor: "#d3d3d3",
+		maxWidth: "70%",
+		margin: "8px",
 	};
 
 	return (
 		<BackgroundLines
 			className="flex items-center justify-center w-full flex-col px-4"
 			svgOptions={{ duration: 10 }}>
-			<div style={{ display: "flex", height: "100vh", width: "100vw" }}>
+			<div
+				style={{
+					display: "flex",
+					height: "100vh", // entire page height equals sidebar height
+					width: "100vw",
+					overflow: "hidden", // disable scrolling
+				}}>
 				{/* Sidebar section */}
 				<div
 					style={{
@@ -132,7 +160,6 @@ const Home = () => {
 						borderTopRightRadius: "30px",
 						borderBottomRightRadius: "30px",
 						boxShadow: "2px 0 3px rgba(0, 0, 0, 0.3)",
-						marginLeft: "0",
 					}}>
 					<div style={{ marginTop: "50px", marginLeft: "4px" }}>
 						{/* Sidebar header: Logo and App Title */}
@@ -285,16 +312,37 @@ const Home = () => {
 						</>
 					)}
 
+					{/* Message bubbles container */}
+					{animateTextArea && (
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								width: "100%",
+								marginBottom: "20px",
+								maxHeight: "400px", // adjust as needed for scrolling
+								overflowY: "auto",
+								padding: "0 10px",
+							}}>
+							{messages.map((msg, idx) => (
+								<div
+									key={idx}
+									style={{
+										...messageBubbleStyle,
+										alignSelf: msg.role === "user" ? "flex-end" : "flex-start",
+									}}>
+									{msg.text}
+								</div>
+							))}
+						</div>
+					)}
+
 					{/* Text input and send button container */}
 					<div
 						style={{
-							/* Animate the container downward using translateY */
-							transform: animateTextArea
-								? "translateY(210px)"
-								: "translateY(0)",
-							transition: "transform 0.8s ease",
 							width: "100%",
-							marginBottom: "20px", // Give additional bottom margin if needed
+							marginBottom: "20px",
+							position: "relative",
 						}}>
 						<TextArea
 							allowClear
@@ -330,9 +378,6 @@ const Home = () => {
 								style={{
 									backgroundColor: "#000",
 									border: "none",
-									defaultActiveBorderColor: "000",
-									defaultGhostBorderColor: "000",
-									primaryShadow: "000",
 								}}
 								onClick={handleSendClick}
 							/>
