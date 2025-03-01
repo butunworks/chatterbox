@@ -109,13 +109,16 @@ const Home = () => {
 	// Handler for the send button click
 	const handleSendClick = () => {
 		if (value.trim().length >= 1) {
+			// Move the textarea downward only once (it won't update on subsequent clicks or new AI messages)
+			if (textAreaPosition === 0) {
+				setTextAreaPosition(20); // Adjust the value as needed
+			}
 			setAnimateTextArea(true);
 			// Move the current textarea value to user message bubbles
 			setMessages((prev) => [...prev, { role: "user", text: value }]);
-			// Aceternity code: make the input disappear from the textarea
+			// Clear the textarea
 			setValue("");
 			// Simulate an AI answer after a delay.
-			setTextAreaPosition(120); // Adjust the value as needed
 			setTimeout(() => {
 				setMessages((prev) => [
 					...prev,
@@ -273,7 +276,7 @@ const Home = () => {
 						flexDirection: "column",
 						alignItems: "center",
 						justifyContent: "center",
-						height: "40%",
+						height: "70%",
 						width: "40%",
 						position: "absolute",
 						top: "50%",
@@ -322,10 +325,10 @@ const Home = () => {
 								display: "flex",
 								flexDirection: "column",
 								width: "100%",
-								marginBottom: "20px",
-								maxHeight: "400px", // adjust as needed for scrolling
+								height: "100%",
 								overflowY: "auto",
-								padding: "0 10px",
+								overflowX: "hidden",
+								padding: "20px",
 							}}>
 							{messages.map((msg, idx) => (
 								<div
@@ -361,7 +364,7 @@ const Home = () => {
 								console.log("TextArea value:", e.target.value);
 							}}
 							placeholder="Talk to Chatterbox..."
-							maxLength={500}
+							maxLength={1500}
 							showCount={false}
 							autoSize={{
 								minRows: 3,
