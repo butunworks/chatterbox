@@ -373,6 +373,13 @@ const Home = () => {
 								setValue(e.target.value);
 								console.log("TextArea value:", e.target.value);
 							}}
+							onKeyDown={(e) => {
+								// If Enter is pressed without Shift, trigger the search button
+								if (e.key === "Enter" && !e.shiftKey) {
+									e.preventDefault();
+									handleSendClick();
+								}
+							}}
 							placeholder="Talk to Chatterbox..."
 							maxLength={1500}
 							showCount={false}
