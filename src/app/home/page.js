@@ -138,6 +138,16 @@ const Home = () => {
 		console.log("Send button clicked");
 	};
 
+	// Add a handler to reset the page to its initial state when "New Chat" is clicked.
+	const handleNewChatClick = () => {
+		setValue("");
+		setAnimateTextArea(false);
+		setMessages([]);
+		setTextAreaPosition(0);
+		setSidebarVisible(false);
+		console.log("New Chat clicked - page reset");
+	};
+
 	// Common style for message bubbles
 	const messageBubbleStyle = {
 		borderRadius: "30px",
@@ -207,6 +217,7 @@ const Home = () => {
 							className={styles.linearGradientButton}
 							icon={<MessageOutlined />}
 							style={{ marginTop: "10px", width: "calc(100% - 20px)" }} // updated width
+							onClick={handleNewChatClick} // Added onClick handler here
 						>
 							New Chat
 						</Button>
@@ -360,7 +371,7 @@ const Home = () => {
 							marginBottom: "20px",
 							position: "relative",
 							transform: `translateY(${textAreaPosition}px)`,
-							transition: "transform 0.3s ease",
+							transition: "transform 0.5s ease",
 						}}>
 						<TextArea
 							allowClear
